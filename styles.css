@@ -792,3 +792,16 @@ a:hover { color: var(--accent-hover); }
 @media (prefers-reduced-motion: reduce) {
   .prompt-block__text { scroll-behavior: auto; }
 }
+
+.detail__prompts-head-main {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+.detail__prompts-note {
+  font-size: 12px;
+  line-height: 16px;
+  letter-spacing: 0.02em;
+  color: var(--ink-tertiary);
+  font-weight: 400;
+}
