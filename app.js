@@ -1,5 +1,85 @@
 (() => {
-  const PIECES = [
+  const BATCH = window.JOURNAL_1107;
+  if (!BATCH) throw new Error("Missing 2026-11-07 journal batch");
+
+  const TODAY = [
+    {
+      id: "viv",
+      title: "ViV",
+      creator: "Sam Dallyn",
+      cat: "digital",
+      catLabel: "数字界面",
+      tag: "摄影经纪 · 影像制作 · 编辑式图廊",
+      source: "Awwwards · Site of the Day · 2026-11-06",
+      note: "最有辨识度的不是「白底摄影网站」，而是三种尺度的反差：极小导航、巨大的粗细对比字形、从侧边和下方涌入的摄影。首屏上方大片留白让词标像一件平面作品，照片又从右下方遮住字形，打破品牌与内容的等级。进入名册，画面转成大号窄衬线姓名与悬浮肖像；进入作品页，再压成几乎无缝的图像档案。三种图像密度有意不同，不能全部统一成普通瀑布流。\n\n值得借鉴：摄影本身负责颜色，文字负责秩序；筛选不是后台工具，而是换色、换姓名节奏的画面机制。代价是首屏信息密度低，超大姓名与 hover 预览在触屏上需要明确的点击替代。",
+      href: "https://www.awwwards.com/sites/viv",
+      live: "https://vivmgmt.com/",
+      region: "国际",
+      applyType: "网页/代码复刻",
+      promptsLabel: "AI复刻提示词",
+      essay: BATCH.viv.essay,
+      craft: BATCH.viv.craft,
+      prompts: BATCH.viv.prompts,
+    },
+    {
+      id: "grids",
+      title: "Grids — DES Season 03",
+      creator: "Obys；Idea：Olha Olianishyna；Design：Viacheslav Olianishyn",
+      cat: "motion",
+      catLabel: "运动与互动",
+      tag: "设计教育 · 模块字形 · 滚动编排",
+      source: "Awwwards · Site of the Day · 2026-11-02",
+      note: "像素字不是装饰海报，而是从全屏幕布压成顶部横带、再留作左侧条码的空间装置；课程目录、黑白摄影与翻倒巨字在同一个网格里互相解释。它的张力来自持续固定的边缘结构与内部剧烈变动，而不是再加一组通用悬停特效。",
+      href: "https://www.awwwards.com/sites/grids-1",
+      live: "https://grids03.obys.agency/",
+      region: "国际",
+      applyType: "网页/代码复刻（主）· 动态平面/视频（辅）",
+      promptsLabel: "AI复刻提示词",
+      essay: BATCH.grids.essay,
+      craft: BATCH.grids.craft,
+      prompts: BATCH.grids.prompts,
+    },
+    {
+      id: "pac",
+      title: "P.A.C. Bakery",
+      creator: "Polar（São Paulo；插画 Beatriz Batisteli；摄影署名含 Nani Rodrigues、Marcos Lôndero/Brejo）",
+      cat: "brand",
+      catLabel: "平面与品牌",
+      tag: "面包店视觉识别 · 活字系统",
+      source: "It's Nice That · 2026-11-04",
+      note: "Logo 几乎就是用 Gronland / Rublena 直接打出的三个字母，故意不定死；收据机印菜单、插画保持手工温度——识别跟着烘焙节奏天天变，而不是一套永远不变的 VI 手册。",
+      href: "https://www.itsnicethat.com/articles/polar-pac-graphic-design-project-041126",
+      region: "国际",
+      applyType: "图像静帧（主）· 印刷物料系统短提示（辅）",
+      promptsLabel: "AI复刻提示词",
+      promptUncertain: true,
+      accuracyCaveat: "提示词不一定准确。已读来源文章与封面，未核对完整品牌物料。",
+      essay: BATCH.pac.essay,
+      craft: BATCH.pac.craft,
+      prompts: BATCH.pac.prompts,
+    },
+    {
+      id: "toyto",
+      title: "Toyto",
+      creator: "Odd Works（Pavel Ripley 艺术指导/插画 · Alina Golubeva 设计；工作室 Lisbon/London；品牌在 Berlin）",
+      cat: "product",
+      catLabel: "产品与包装",
+      tag: "木制玩具包装 · 触感物料",
+      source: "It's Nice That · 2026-11-02",
+      note: "木块积木包装干净到能摆进成人书架：自绘词标像积木拼接，Labil Grotesk 字母微微歪斜；压凹/压凸与复杂色替代尖叫童趣，把「给家长的玩具，用来和孩子玩」做成可触的物件。",
+      href: "https://www.itsnicethat.com/articles/odd-works-toyto-graphic-design-project-021126",
+      region: "国际",
+      applyType: "图像静帧 / 包装系统",
+      promptsLabel: "AI复刻提示词",
+      promptUncertain: true,
+      accuracyCaveat: "提示词不一定准确。已读来源文章与封面，未核对完整品牌物料。",
+      essay: BATCH.toyto.essay,
+      craft: BATCH.toyto.craft,
+      prompts: BATCH.toyto.prompts,
+    },
+  ];
+
+  const PIECES = TODAY.concat([
     {
       id: "agrumea",
       title: "Agrumea Farm",
@@ -429,7 +509,7 @@
         },
       ],
     }
-  ];
+  ]);
 
   const FILTERS = [
     { id: "all", label: "全部" },
@@ -466,6 +546,8 @@
   const detailApplyRow = document.getElementById("detail-apply-row");
   const detailApply = document.getElementById("detail-apply");
   const detailPrompts = document.getElementById("detail-prompts");
+  const detailEssay = document.getElementById("detail-essay");
+  const detailCraft = document.getElementById("detail-craft");
   const detailActions = document.getElementById("detail-actions");
 
   let activeFilter = "all";
@@ -593,6 +675,18 @@
     return bits.length ? ` · ${bits.join(" · ")}` : "";
   }
 
+  function renderDoc(el, markdown, title) {
+    if (!el) return;
+    if (!markdown) {
+      el.hidden = true;
+      el.innerHTML = "";
+      return;
+    }
+    el.hidden = false;
+    const html = typeof renderJournalMarkdown === "function" ? renderJournalMarkdown(markdown) : escapeHTML(markdown);
+    el.innerHTML = `<h3 class="detail__section-title">${escapeHTML(title)}</h3><div class="detail__prose">${html}</div>`;
+  }
+
   function renderPrompts(piece) {
     detailPrompts.innerHTML = "";
     const list = Array.isArray(piece.prompts) ? piece.prompts.filter((p) => p && p.text) : [];
@@ -606,12 +700,14 @@
     const noteHtml = piece.promptsNote
       ? `<div class="detail__prompts-note">${escapeHTML(piece.promptsNote)}</div>`
       : "";
-    head.innerHTML = `<div class="detail__prompts-head-main"><div class="detail__label">可复刻提示词</div>${noteHtml}</div><div class="detail__prompts-count">${list.length} 条</div>`;
+    const promptsLabel = piece.promptsLabel || "可复刻提示词";
+    detailPrompts.setAttribute("aria-label", promptsLabel);
+    head.innerHTML = `<div class="detail__prompts-head-main"><div class="detail__label">${escapeHTML(promptsLabel)}</div>${noteHtml}</div><div class="detail__prompts-count">${list.length} 条</div>`;
     detailPrompts.appendChild(head);
     if (hasSourceLimit(piece)) {
       const caveat = document.createElement("p");
       caveat.className = "detail__prompt-caveat";
-      caveat.textContent = "提示词不一定准确。提示词仅依据封面/可见材料。";
+      caveat.textContent = piece.accuracyCaveat || "提示词不一定准确。提示词仅依据封面/可见材料。";
       detailPrompts.appendChild(caveat);
     }
     list.forEach((item, idx) => {
@@ -681,7 +777,9 @@
       detailApplyRow.hidden = true;
     }
 
+    renderDoc(detailEssay, piece.essay, "赏析");
     renderPrompts(piece);
+    renderDoc(detailCraft, piece.craft, "传统制作解析");
 
     const buttons = [];
     if (isVideo(piece) && (piece.watchOnSource || !piece.videoUrl)) {
@@ -806,5 +904,8 @@
   renderFilters();
   renderGallery();
 
-  window.__JOURNAL__ = { PIECES, counts };
+  const countEl = document.querySelector(".masthead__count");
+  if (countEl) countEl.textContent = `${PIECES.length} 件精选`;
+
+  window.__JOURNAL__ = { PIECES, counts, openDetail, closeDetail };
 })();
