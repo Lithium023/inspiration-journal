@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="light" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>灵感合集 · 2026-11-06</title>
+  <meta name="description" content="私人灵感期刊回看册 · 2026年11月6日收录 18 件作品（含视频动效）。不上线、不冒充任何奖项官网。" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Inter:wght@400;500;600&family=Newsreader:opsz,wght@6..72,500;6..72,600&family=Noto+Sans+SC:wght@400;500;600&family=Noto+Serif+SC:wght@500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <a class="wrap" href="#gallery" style="position:absolute;left:-9999px;top:auto;width:1px;height:1px;overflow:hidden">跳到作品栅格</a>
+
+  <header class="masthead wrap">
+    <div>
+      <h1 class="masthead__title">灵感合集</h1>
+      <p class="masthead__sub">私人回看 · Asia/Shanghai</p>
+    </div>
+    <div class="masthead__meta">
+      <div class="masthead__date">2026-11-06 · Friday</div>
+      <div class="masthead__count">18 件精选</div>
+      <p class="masthead__edit">奶油纸面里的一周：网页、动势、品牌与触感；今日补上可观看的动效成片。</p>
+    </div>
+  </header>
+
+  <div class="filter-bar" role="navigation" aria-label="作品分类筛选">
+    <div class="filter-bar__inner" id="filter-bar" role="tablist" aria-label="分类"></div>
+  </div>
+
+  <main>
+    <section class="gallery wrap" id="gallery" aria-label="今日精选作品"></section>
+  </main>
+
+  <footer class="colophon wrap">
+    <div class="colophon__inner">
+      <p class="colophon__mark">私人灵感期刊</p>
+      <p class="colophon__text">
+        采集自 Awwwards、CSS Design Awards、It's Nice That、站酷、Stash、Motionographer 等公开报道与作品页；缩略图为本地缓存，仅供瓜瓜回看。
+        视频缩略与嵌入遵循来源站许可；无法确认授权时仅链出去源页。本页不是任何奖项或品牌官网，亦不做公网部署。
+      </p>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay" hidden></div>
+
+  <aside
+    class="detail"
+    id="detail"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="detail-title"
+    aria-hidden="true"
+  >
+    <div class="detail__scroll">
+      <div class="detail__media" id="detail-media">
+        <div class="detail__media-frame" id="detail-media-frame"></div>
+        <button type="button" class="detail__close" id="detail-close" aria-label="关闭详情">
+          <svg viewBox="0 0 18 18" aria-hidden="true" focusable="false">
+            <path d="M4.5 4.5l9 9M13.5 4.5l-9 9" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="detail__content">
+        <h2 class="detail__title" id="detail-title"></h2>
+        <div class="detail__props">
+          <div class="detail__row"><div class="detail__label">创作者</div><div class="detail__value" id="detail-creator"></div></div>
+          <div class="detail__row"><div class="detail__label">主分类</div><div class="detail__value" id="detail-cat"></div></div>
+          <div class="detail__row"><div class="detail__label">次标签</div><div class="detail__value" id="detail-tag"></div></div>
+          <div class="detail__row"><div class="detail__label">来源</div><div class="detail__value" id="detail-source"></div></div>
+          <div class="detail__row"><div class="detail__label">区域</div><div class="detail__value" id="detail-region"></div></div>
+        </div>
+        <p class="detail__note" id="detail-note"></p>
+      </div>
+    </div>
+    <div class="detail__actions" id="detail-actions"></div>
+  </aside>
+
+  <script src="app.js"></script>
+  <script>
+    // overlay uses class toggle; remove hidden once JS boots so CSS transitions work
+    document.getElementById("overlay").removeAttribute("hidden");
+  </script>
+</body>
+</html>
