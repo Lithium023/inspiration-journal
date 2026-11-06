@@ -780,6 +780,15 @@ a:hover { color: var(--accent-hover); }
   color: var(--ink-tertiary);
   letter-spacing: 0.02em;
 }
+.card__caveat {
+  color: var(--warm-mark);
+}
+.detail__prompt-caveat {
+  margin: 0;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--warm-mark);
+}
 @media (prefers-reduced-motion: reduce) {
   .prompt-block__text { scroll-behavior: auto; }
 }

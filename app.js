@@ -438,7 +438,7 @@
           <h3 class="card__title">${escapeHTML(p.title)}</h3>
           <p class="card__creator">${escapeHTML(p.creator)}</p>
           <p class="card__note">${escapeHTML(p.note)}</p>
-          <p class="card__region">${escapeHTML(p.region)}${p.cardNote ? ` · <span class="card__waf">${escapeHTML(p.cardNote)}</span>` : ""}</p>
+          <p class="card__region">${escapeHTML(p.region)}${sourceLimitNote(p)}</p>
         </div>
       </button>`;
   }
@@ -502,6 +502,19 @@
   }
 
 
+  function hasSourceLimit(piece) {
+    return Boolean(piece && (piece.cardNote || piece.sourceLimit || piece.promptUncertain));
+  }
+
+  function sourceLimitNote(piece) {
+    if (!hasSourceLimit(piece)) return "";
+    const limit = piece.cardNote || piece.sourceLimit || "";
+    const bits = [];
+    if (limit) bits.push(`<span class="card__waf">${escapeHTML(limit)}</span>`);
+    bits.push(`<span class="card__waf card__caveat">提示词不一定准确</span>`);
+    return bits.length ? ` · ${bits.join(" · ")}` : "";
+  }
+
   function renderPrompts(piece) {
     detailPrompts.innerHTML = "";
     const list = Array.isArray(piece.prompts) ? piece.prompts.filter((p) => p && p.text) : [];
@@ -514,6 +527,12 @@
     head.className = "detail__prompts-head";
     head.innerHTML = `<div class="detail__label">可复刻提示词</div><div class="detail__prompts-count">${list.length} 条</div>`;
     detailPrompts.appendChild(head);
+    if (hasSourceLimit(piece)) {
+      const caveat = document.createElement("p");
+      caveat.className = "detail__prompt-caveat";
+      caveat.textContent = "提示词不一定准确。提示词仅依据封面/可见材料。";
+      detailPrompts.appendChild(caveat);
+    }
     list.forEach((item, idx) => {
       const block = document.createElement("div");
       block.className = "prompt-block";
@@ -569,7 +588,7 @@
     detailCreator.textContent = piece.creator;
     detailCat.innerHTML = `<span class="chip chip--${piece.cat}"><span class="chip__dot" aria-hidden="true"></span>${escapeHTML(piece.catLabel)}</span>`;
     detailTag.textContent = piece.tag;
-    detailSource.textContent = piece.source;
+    detailSource.textContent = piece.cardNote ? `${piece.source} · ${piece.cardNote}` : piece.source;
     detailRegion.textContent = piece.region;
     detailNote.textContent = piece.note;
 
