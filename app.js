@@ -1,6 +1,86 @@
 (() => {
   const BATCH = window.JOURNAL_1107;
+  const BATCH9 = window.JOURNAL_1109;
   if (!BATCH) throw new Error("Missing 2026-11-07 journal batch");
+  if (!BATCH9) throw new Error("Missing 2026-11-09 journal batch");
+
+  const TODAY9 = [
+    {
+      id: "jefferson",
+      title: "Justin Jefferson",
+      creator: "LayerTwo × Assemble",
+      cat: "digital",
+      catLabel: "数字界面",
+      tag: "运动员个人站 · 材质化 UI",
+      source: "Awwwards · Site of the Day · 2026-11-07",
+      note: "最有辨识度的不是「又一个运动员官网」，而是整站把美式足球皮粒面当成「纸」：cream / 紫黑 / 银灰只换主题色，几何同构。巨型标题不铺实心色，而是镂进/压印粒面，让 pebble 透过字形；Hero 则用 depth-mapped 肖像把高光视频嵌进墨镜片，再加镜片 dive。材质统一、章节主题切换——这比堆特效更像签名。\n\n值得借鉴：纹理是叙事底，不是贴图装饰；交互铬层用骨色胶囊文字标签（Watch / Drag / CLOSE）点名意图，系统箭头仍在。代价是 WebGL 肖像与粒面镂字对性能与字体授权要求高，触屏需明确 dive / 拖卡替代路径。",
+      href: "https://www.awwwards.com/sites/justin-jefferson",
+      live: "https://jjettas.com/",
+      region: "国际",
+      applyType: "网页/代码复刻",
+      promptsLabel: "AI复刻提示词",
+      essay: BATCH9.jefferson.essay,
+      craft: BATCH9.jefferson.craft,
+      prompts: BATCH9.jefferson.prompts,
+    },
+    {
+      id: "extrafazant",
+      title: "Extrafazant",
+      creator: "Dylan Brouwer",
+      cat: "motion",
+      catLabel: "运动与互动",
+      tag: "工作室站 · 可变字体与微交互",
+      source: "Awwwards · Site of the Day · 2026-11-08",
+      note: "最有辨识度的不是「又一个黑白工作室站」，而是三条咬合的手感：巨型标题在鼠标半径内被逐字拉字重；服务卡悬停像拼贴纸一样胀开并把邻卡推开；团队肖像奇偶行反向 scrub，再叠一层惯性动量。钴蓝色满屏擦拭是真的 Barba 转场，不是封面外框。气质是干净底 + 高饱和贴纸/色框——克制的 UI 铬层，放肆的交互物理。\n\n值得借鉴：可变字轴当主交互，而不是装饰性 hover 色；拼贴与团队滚动把「工作室」做成可摸的材质。代价是 Helvetica Now / Serrif 子集授权与触屏替代路径必须写清；五态 SVG 光标要用 CSS url()，别做成全局圆点跟随。",
+      href: "https://www.awwwards.com/sites/extrafazant",
+      live: "https://www.extrafazant.nl/",
+      region: "国际",
+      applyType: "网页/代码复刻",
+      promptsLabel: "AI复刻提示词",
+      essay: BATCH9.extrafazant.essay,
+      craft: BATCH9.extrafazant.craft,
+      prompts: BATCH9.extrafazant.prompts,
+    },
+    {
+      id: "museumnight",
+      title: "Amsterdam Museum Night 2026",
+      creator: "From Form（Ashley Govers · Jurjen Versteeg）",
+      cat: "brand",
+      catLabel: "平面与品牌",
+      tag: "城市文化活动视觉 · 超现实动态识别",
+      source: "It's Nice That · 2026-11-05",
+      note: "把夜游写成 17 世纪透视箱——人像嵌进深色盒状空间，钥匙/钟/火把像剪贴物漂浮；脸部比例刻意拧长前额与颈、放大眼睛，subtle but alienating。动画全部由照片剪辑拼出，音景像夜曲。",
+      href: "https://www.itsnicethat.com/articles/from-form-amsterdam-museum-night-graphic-design-project-051126",
+      image: "images/museumnight.png",
+      region: "国际",
+      applyType: "图像静帧（主 · 海报/主视觉）· 动效/视频短片（辅）",
+      promptsLabel: "AI复刻提示词",
+      promptUncertain: true,
+      accuracyCaveat: "提示词不一定准确。已读 INT 文章与封面/图册观察，未核对官方完整物料手册。",
+      essay: BATCH9.museumnight.essay,
+      craft: BATCH9.museumnight.craft,
+      prompts: BATCH9.museumnight.prompts,
+    },
+    {
+      id: "aplomb",
+      title: "Aplomb",
+      creator: "Studio Lotta Nieminen（Helsinki）",
+      cat: "product",
+      catLabel: "产品与包装",
+      tag: "香水包装 · 书信物料系统",
+      source: "It's Nice That · 2026-10-29",
+      note: "每支香是一封信；插画邮票嵌在压凹框里、一侧压凹齿孔；火漆不做封口戏，而做成橄榄绿哑光瓶盖垂滴。Edict 尖衬线泪滴终端配 Yorick 邮戳环，手工温度与奢侈克制同框。",
+      href: "https://www.itsnicethat.com/articles/studio-lotta-nieminen-aplomb-branding-project-291026",
+      region: "国际",
+      applyType: "图像静帧（主 · 瓶/盒/邮票/信笺 flat lay）· 包装动效短片（可选）",
+      promptsLabel: "AI复刻提示词",
+      promptUncertain: true,
+      accuracyCaveat: "提示词不一定准确。已读 INT 文章与封面/图册观察。无项目活站。",
+      essay: BATCH9.aplomb.essay,
+      craft: BATCH9.aplomb.craft,
+      prompts: BATCH9.aplomb.prompts,
+    },
+  ];
 
   const TODAY = [
     {
@@ -79,7 +159,7 @@
     },
   ];
 
-  const PIECES = TODAY.concat([
+  const PIECES = TODAY9.concat(TODAY).concat([
     {
       id: "agrumea",
       title: "Agrumea Farm",
@@ -558,6 +638,10 @@
   const playIcon = `<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M4.5 2.8v10.4L13.2 8 4.5 2.8Z"/></svg>`;
   const extIcon = `<svg viewBox="0 0 16 16" aria-hidden="true" focusable="false"><path fill="currentColor" d="M6.5 3.5a.75.75 0 0 0 0 1.5h3.19L3.22 11.47a.75.75 0 1 0 1.06 1.06L10.75 6.06v3.19a.75.75 0 0 0 1.5 0v-5a.75.75 0 0 0-.75-.75h-5Z"/></svg>`;
 
+  function pieceImage(p) {
+    return p.image || `images/${p.id}.jpg`;
+  }
+
   function isVideo(p) {
     return p.mediaKind === "video" || p.cat === "video";
   }
@@ -587,7 +671,7 @@
     return `
       <button type="button" class="card${video ? " card--video" : ""}" data-id="${p.id}" data-cat="${p.cat}" aria-label="查看 ${escapeAttr(p.title)} 详情" style="animation-delay:${Math.min(index, 6) * 40}ms">
         <div class="card__media">
-          <img src="images/${p.id}.jpg" alt="${escapeAttr(p.title)}" width="${mediaW}" height="${mediaH}" loading="lazy" decoding="async" />
+          <img src="${escapeAttr(pieceImage(p))}" alt="${escapeAttr(p.title)}" width="${mediaW}" height="${mediaH}" loading="lazy" decoding="async" />
           ${overlayBits}
         </div>
         <div class="card__body">
@@ -643,7 +727,7 @@
 
   function renderDetailMedia(piece) {
     stopDetailMedia();
-    const poster = `images/${piece.id}.jpg`;
+    const poster = pieceImage(piece);
     if (canEmbed(piece)) {
       detailMedia.classList.add("is-video");
       // muted autoplay attempt; never unmute
