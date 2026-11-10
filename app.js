@@ -1,8 +1,88 @@
 (() => {
   const BATCH = window.JOURNAL_1107;
   const BATCH9 = window.JOURNAL_1109;
+  const BATCH10 = window.JOURNAL_1110;
   if (!BATCH) throw new Error("Missing 2026-11-07 journal batch");
   if (!BATCH9) throw new Error("Missing 2026-11-09 journal batch");
+  if (!BATCH10) throw new Error("Missing 2026-11-10 journal batch");
+
+  const TODAY10 = [
+    {
+      id: "clinia",
+      title: "Clinia",
+      creator: "MILL3",
+      cat: "digital",
+      catLabel: "数字界面",
+      tag: "医疗 AI 产品站 · 字体系统与明暗模式",
+      source: "Awwwards · Nominee · 2026-11-09",
+      note: "最有辨识度的不是又一张医疗 AI 功能海报，而是暖象牙 Hero 场上几道发丝橙弧（左三右二、大半径相交，不是同心涟漪），再配一段无需操作、自动循环的三拍叙事：病人图谱 → 对话卡 → 目录窗口。衬线标题把故事语气从操作界面里分出来，页头胶囊切换近黑炭场地——气质在克制的纸质感，不在科技蓝。",
+      href: "https://www.awwwards.com/sites/clinia",
+      live: "https://clinia.com/",
+      region: "国际",
+      applyType: "网页/代码复刻",
+      promptsLabel: "AI复刻提示词",
+      essay: BATCH10.clinia.essay,
+      craft: BATCH10.clinia.craft,
+      prompts: BATCH10.clinia.prompts,
+    },
+    {
+      id: "zirka",
+      title: "ZIRKA Interceptor",
+      creator: "Qream（Yehor Herasymenko · Illya Bilyk · Vladyslav Laruskin）",
+      cat: "motion",
+      catLabel: "运动与互动",
+      tag: "产品叙事站 · 滚动预渲染与界面隐喻",
+      source: "Awwwards · Site of the Day · 2026-11-09",
+      note: "最有辨识度的不是「把拦截机 3D 模型摆进首屏当海报」，而是加载之后的第一视口只剩 #050505 上的 Inter Display 大标题与 HUD 铬层；机身作为预渲染影像，要等到滚动进入规格 001+ 才出现，镜头、裁切与打光随滚动擦洗改变，再叠准星、圆环和后段的全幅橙色摄影调色。\n\n值得借鉴：用 MP4/WebM + Canvas 2D 序列 + Lottie/SVG 叠层，就能做出「像 3D 产品剧场」的滚动手感，而不在浏览器里跑实时三维。代价是预渲染板必须几何正确、字体与自定义准星指针必须真的加载；封面/奖项缩略图里那台显示器中被神光勾亮的机身，是后期滚动或棚拍画框，不要误锁成第一屏。",
+      href: "https://www.awwwards.com/sites/zirka-interceptor",
+      live: "https://www.zrk.technology/",
+      region: "国际",
+      applyType: "网页/代码复刻（主）· 动效/视频（次）",
+      promptsLabel: "AI复刻提示词",
+      essay: BATCH10.zirka.essay,
+      craft: BATCH10.zirka.craft,
+      prompts: BATCH10.zirka.prompts,
+    },
+    {
+      id: "julia",
+      title: "Julia",
+      creator: "Hey Studio",
+      cat: "brand",
+      catLabel: "平面与品牌",
+      tag: "咖啡馆识别 · 实物丝带字标",
+      source: "BP&O · 2026-11-04",
+      note: "字标不是先画再仿真材质，而是用真丝带折出字母，把折痕、阴影和松紧留在字形里再描成矢量。同一条丝带从台面绕到纸杯、工装、橱窗乙烯，点心盒则用真丝带扎上，把「多花一点心思包起来」做成整套识别。",
+      href: "https://bpando.org/2026/11/04/tied-with-care/",
+      region: "国际",
+      applyType: "平面/图像（主 · 字标静物 / 纸杯 / 工装 / 点心盒 / 橱窗 / 小票）",
+      promptsLabel: "AI复刻提示词",
+      promptUncertain: true,
+      accuracyCaveat: "提示词不一定准确。已读 Hey 案例与 BP&O 文本，并对封面及物料照片作过观察。无独立咖啡馆活站。",
+      essay: BATCH10.julia.essay,
+      craft: BATCH10.julia.craft,
+      prompts: BATCH10.julia.prompts,
+    },
+    {
+      id: "temper",
+      title: "Temper Victory Edition",
+      creator: "Studio Hono（维也纳；与酿酒师 Luka Zeichmann 合作）",
+      cat: "product",
+      catLabel: "产品与包装",
+      tag: "限定酒标 · 翻页动画包装",
+      source: "It's Nice That · 2026-10-26",
+      note: "把一场漫长决赛的最后四秒拆成六十帧，一帧一瓶；网球不是印上去的，而是冲孔，透光时酒液变成球。六十张按序排好就是那个赛点，Riso 的套印偏移也跟着动。",
+      href: "https://www.itsnicethat.com/articles/studio-hono-temper-branding-project-261026",
+      live: "https://temper.studio/shop/victory-edition-cider-2026-750ml",
+      region: "国际",
+      applyType: "包装/图像（主）· 动效/视频短片（辅）",
+      promptsLabel: "AI复刻提示词",
+      promptUncertain: true,
+      accuracyCaveat: "提示词不一定准确。已读 INT 与 Hono 案例文本，并对封面与瓶身静帧作过观察。商店站字体不是酒标字体。",
+      essay: BATCH10.temper.essay,
+      craft: BATCH10.temper.craft,
+      prompts: BATCH10.temper.prompts,
+    },
+  ];
 
   const TODAY9 = [
     {
@@ -159,7 +239,7 @@
     },
   ];
 
-  const PIECES = TODAY9.concat(TODAY).concat([
+  const PIECES = TODAY10.concat(TODAY9).concat(TODAY).concat([
     {
       id: "agrumea",
       title: "Agrumea Farm",
