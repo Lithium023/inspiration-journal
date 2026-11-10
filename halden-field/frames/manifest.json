@@ -1,0 +1,12 @@
+{
+  "air": 36,
+  "guide": 12,
+  "docs": [
+    "doc-optic.webp",
+    "doc-wing.webp",
+    "doc-pod.webp"
+  ],
+  "side": "side.webp",
+  "murmur": "murmur.webp",
+  "bay": "bay.webp"
+}
