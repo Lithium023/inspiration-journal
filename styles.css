@@ -915,6 +915,62 @@ a:hover { color: var(--accent-hover); }
   color: var(--ink-tertiary);
   font-weight: 400;
 }
+.proof-shots {
+  display: grid;
+  gap: 12px;
+  margin: 4px 0 8px;
+}
+.proof-shots__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: 17px;
+  line-height: 24px;
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.proof-shots__note {
+  display: grid;
+  gap: 6px;
+  font-size: 13px;
+  line-height: 20px;
+  color: var(--ink-secondary);
+}
+.proof-shots__note p {
+  margin: 0;
+}
+.proof-shots__grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+@media (min-width: 640px) and (max-width: 1279px) {
+  .proof-shots__grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 12px;
+  }
+}
+.proof-shots__figure {
+  margin: 0;
+  min-width: 0;
+}
+.proof-shots__link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+.proof-shots__link img {
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border-default);
+  border-radius: 8px;
+  background: var(--bg-surface-muted);
+}
+.proof-shots__caption {
+  margin-top: 6px;
+  font-size: 12px;
+  line-height: 16px;
+  color: var(--ink-secondary);
+}
 
 .detail__doc {
   margin: 0;

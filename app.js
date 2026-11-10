@@ -180,6 +180,62 @@
       essay: BATCH.viv.essay,
       craft: BATCH.viv.craft,
       prompts: BATCH.viv.prompts,
+      proofNote: [
+        "活站：https://vivmgmt.com/（2026-11-07 完整滚动；2026-11-10 复核首页仍是同一活站）",
+        "已知缺口：Production / About 整页静帧不足；源码中有全视口 #fac43a 黄场 masthead，该态未取帧，不要当成已观察画面。名册分类底色未逐项量取精确色号。部分名册截图停在滚动中段。",
+      ],
+      proofShots: [
+        {
+          src: "images/proof/viv/viv-a-homepage-first-fold.jpg",
+          caption: "加载后第一视口：白底、巨大词标、照片从下方/侧边涌入并叠住词标",
+          alt: "ViV 原站校对：加载后第一视口：白底、巨大词标、照片从下方/侧边涌入并叠住词标",
+        },
+        {
+          src: "images/proof/viv/viv-b-gallery-mid-scroll-news.jpg",
+          caption: "首页中段：游行影集之后的 News 高幅网格",
+          alt: "ViV 原站校对：首页中段：游行影集之后的 News 高幅网格",
+        },
+        {
+          src: "images/proof/viv/viv-c2-artists-roster-list.jpg",
+          caption: "Artists 名册 rest：超大窄衬线姓名列表",
+          alt: "ViV 原站校对：Artists 名册 rest：超大窄衬线姓名列表",
+        },
+        {
+          src: "images/proof/viv/viv-c-artists-hover-preview.jpg",
+          caption: "桌面悬停姓名：竖幅肖像覆盖在大字之上",
+          alt: "ViV 原站校对：桌面悬停姓名：竖幅肖像覆盖在大字之上",
+        },
+        {
+          src: "images/proof/viv/viv-c3-artists-filter-bg-shift.jpg",
+          caption: "分类切换后整场低饱和底色改变",
+          alt: "ViV 原站校对：分类切换后整场低饱和底色改变",
+        },
+        {
+          src: "images/proof/viv/viv-d-artist-inner-arturo.jpg",
+          caption: "艺人作品页：巨大姓名 + 紧密多列图像档案",
+          alt: "ViV 原站校对：艺人作品页：巨大姓名 + 紧密多列图像档案",
+        },
+        {
+          src: "images/proof/viv/viv-f-artist-lifestyle-filter.jpg",
+          caption: "艺人页分类筛选（如 Lifestyle）后的作品状态",
+          alt: "ViV 原站校对：艺人页分类筛选（如 Lifestyle）后的作品状态",
+        },
+        {
+          src: "images/proof/viv/viv-g-all-artists-masonry.jpg",
+          caption: "All 页：跨艺人紧密 masonry",
+          alt: "ViV 原站校对：All 页：跨艺人紧密 masonry",
+        },
+        {
+          src: "images/proof/viv/viv-h-news-inner-article.jpg",
+          caption: "News 内文页",
+          alt: "ViV 原站校对：News 内文页",
+        },
+        {
+          src: "images/proof/viv/viv-e-homepage-footer.jpg",
+          caption: "首页页脚",
+          alt: "ViV 原站校对：首页页脚",
+        },
+      ],
     },
     {
       id: "grids",
@@ -877,11 +933,79 @@
     }
   }
 
+  function proofShotsOf(piece) {
+    return Array.isArray(piece.proofShots) ? piece.proofShots.filter((shot) => shot && shot.src) : [];
+  }
+
+  function linkifyText(text) {
+    const re = /https?:\/\/[A-Za-z0-9._~:/?#\[\]@!$&'()*+,;=%-]+/g;
+    let html = "";
+    let last = 0;
+    let match;
+    const source = String(text);
+    while ((match = re.exec(source))) {
+      html += escapeHTML(source.slice(last, match.index));
+      html += `<a href="${escapeAttr(match[0])}" target="_blank" rel="noopener noreferrer">${escapeHTML(match[0])}</a>`;
+      last = match.index + match[0].length;
+    }
+    html += escapeHTML(source.slice(last));
+    return html;
+  }
+
+  function appendProofShots(piece) {
+    const shots = proofShotsOf(piece);
+    if (!shots.length) return;
+    const section = document.createElement("section");
+    section.className = "proof-shots";
+    const title = document.createElement("h3");
+    title.className = "proof-shots__title";
+    title.textContent = "原站校对截图";
+    section.appendChild(title);
+    const notes = Array.isArray(piece.proofNote) ? piece.proofNote.filter(Boolean) : [];
+    if (notes.length) {
+      const note = document.createElement("div");
+      note.className = "proof-shots__note";
+      notes.forEach((line) => {
+        const p = document.createElement("p");
+        p.innerHTML = linkifyText(line);
+        note.appendChild(p);
+      });
+      section.appendChild(note);
+    }
+    const grid = document.createElement("div");
+    grid.className = "proof-shots__grid";
+    shots.forEach((shot) => {
+      const figure = document.createElement("figure");
+      figure.className = "proof-shots__figure";
+      const link = document.createElement("a");
+      link.className = "proof-shots__link";
+      link.href = shot.src;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+      const img = document.createElement("img");
+      img.src = shot.src;
+      img.alt = shot.alt || shot.caption || "";
+      img.loading = "lazy";
+      img.width = shot.width || 1800;
+      img.height = shot.height || 1005;
+      link.appendChild(img);
+      const cap = document.createElement("figcaption");
+      cap.className = "proof-shots__caption";
+      cap.textContent = shot.caption || "";
+      figure.appendChild(link);
+      figure.appendChild(cap);
+      grid.appendChild(figure);
+    });
+    section.appendChild(grid);
+    detailPrompts.appendChild(section);
+  }
+
   function renderPrompts(piece) {
     detailPrompts.innerHTML = "";
     const list = Array.isArray(piece.prompts) ? piece.prompts.filter((p) => p && p.text) : [];
     if (!list.length) {
       detailPrompts.innerHTML = `<p class="detail__empty">本则暂无</p>`;
+      appendProofShots(piece);
       return;
     }
     const head = document.createElement("div");
@@ -939,6 +1063,7 @@
       block.appendChild(pre);
       detailPrompts.appendChild(block);
     });
+    appendProofShots(piece);
   }
 
   function openDetail(id, trigger) {
