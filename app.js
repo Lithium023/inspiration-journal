@@ -625,9 +625,13 @@
   const detailNote = document.getElementById("detail-note");
   const detailApplyRow = document.getElementById("detail-apply-row");
   const detailApply = document.getElementById("detail-apply");
+  const detailScroll = document.getElementById("detail-scroll");
+  const detailSegments = document.getElementById("detail-segments");
   const detailPrompts = document.getElementById("detail-prompts");
   const detailEssay = document.getElementById("detail-essay");
   const detailCraft = document.getElementById("detail-craft");
+  const segmentPanels = { essay: detailEssay, prompts: detailPrompts, craft: detailCraft };
+  let activeSegment = "essay";
   const detailActions = document.getElementById("detail-actions");
 
   let activeFilter = "all";
@@ -759,34 +763,53 @@
     return bits.length ? ` · ${bits.join(" · ")}` : "";
   }
 
-  function renderDoc(el, markdown, title) {
+  function renderDoc(el, markdown) {
     if (!el) return;
     if (!markdown) {
-      el.hidden = true;
-      el.innerHTML = "";
+      el.innerHTML = `<p class="detail__empty">本则暂无</p>`;
       return;
     }
-    el.hidden = false;
     const html = typeof renderJournalMarkdown === "function" ? renderJournalMarkdown(markdown) : escapeHTML(markdown);
-    el.innerHTML = `<h3 class="detail__section-title">${escapeHTML(title)}</h3><div class="detail__prose">${html}</div>`;
+    el.innerHTML = `<div class="detail__prose">${html}</div>`;
+  }
+
+  function showSegment(next, options) {
+    const id = segmentPanels[next] ? next : "essay";
+    activeSegment = id;
+    const tabs = [...detailSegments.querySelectorAll(".detail__segment")];
+    tabs.forEach((tab) => {
+      const on = tab.dataset.segment === id;
+      tab.setAttribute("aria-selected", String(on));
+      tab.tabIndex = on ? 0 : -1;
+    });
+    Object.entries(segmentPanels).forEach(([key, panel]) => {
+      if (!panel) return;
+      panel.hidden = key !== id;
+    });
+    if (options && options.focusTab) {
+      const tab = tabs.find((item) => item.dataset.segment === id);
+      if (tab) tab.focus();
+    }
+    if (detailScroll && options && options.align) {
+      const bar = detailSegments.parentElement;
+      const delta = bar.getBoundingClientRect().top - detailScroll.getBoundingClientRect().top;
+      if (delta < 0) detailScroll.scrollTop += delta;
+    }
   }
 
   function renderPrompts(piece) {
     detailPrompts.innerHTML = "";
     const list = Array.isArray(piece.prompts) ? piece.prompts.filter((p) => p && p.text) : [];
     if (!list.length) {
-      detailPrompts.hidden = true;
+      detailPrompts.innerHTML = `<p class="detail__empty">本则暂无</p>`;
       return;
     }
-    detailPrompts.hidden = false;
     const head = document.createElement("div");
     head.className = "detail__prompts-head";
     const noteHtml = piece.promptsNote
       ? `<div class="detail__prompts-note">${escapeHTML(piece.promptsNote)}</div>`
       : "";
-    const promptsLabel = piece.promptsLabel || "可复刻提示词";
-    detailPrompts.setAttribute("aria-label", promptsLabel);
-    head.innerHTML = `<div class="detail__prompts-head-main"><div class="detail__label">${escapeHTML(promptsLabel)}</div>${noteHtml}</div><div class="detail__prompts-count">${list.length} 条</div>`;
+    head.innerHTML = `<div class="detail__prompts-head-main">${noteHtml}</div><div class="detail__prompts-count">${list.length} 条</div>`;
     detailPrompts.appendChild(head);
     if (hasSourceLimit(piece)) {
       const caveat = document.createElement("p");
@@ -861,9 +884,11 @@
       detailApplyRow.hidden = true;
     }
 
-    renderDoc(detailEssay, piece.essay, "赏析");
+    renderDoc(detailEssay, piece.essay);
     renderPrompts(piece);
-    renderDoc(detailCraft, piece.craft, "传统制作解析");
+    renderDoc(detailCraft, piece.craft);
+    showSegment("essay");
+    if (detailScroll) detailScroll.scrollTop = 0;
 
     const buttons = [];
     if (isVideo(piece) && (piece.watchOnSource || !piece.videoUrl)) {
@@ -964,6 +989,26 @@
   detailClose.addEventListener("click", closeDetail);
   overlay.addEventListener("click", closeDetail);
 
+  detailSegments.addEventListener("click", (e) => {
+    const tab = e.target.closest(".detail__segment");
+    if (!tab) return;
+    showSegment(tab.dataset.segment, { align: true });
+  });
+
+  detailSegments.addEventListener("keydown", (e) => {
+    const tabs = [...detailSegments.querySelectorAll(".detail__segment")];
+    const idx = tabs.indexOf(document.activeElement);
+    if (idx < 0) return;
+    let next = idx;
+    if (e.key === "ArrowRight" || e.key === "ArrowDown") next = (idx + 1) % tabs.length;
+    else if (e.key === "ArrowLeft" || e.key === "ArrowUp") next = (idx - 1 + tabs.length) % tabs.length;
+    else if (e.key === "Home") next = 0;
+    else if (e.key === "End") next = tabs.length - 1;
+    else return;
+    e.preventDefault();
+    showSegment(tabs[next].dataset.segment, { focusTab: true, align: true });
+  });
+
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && detail.classList.contains("is-open")) {
       e.preventDefault();
@@ -991,5 +1036,5 @@
   const countEl = document.querySelector(".masthead__count");
   if (countEl) countEl.textContent = `${PIECES.length} 件精选`;
 
-  window.__JOURNAL__ = { PIECES, counts, openDetail, closeDetail };
+  window.__JOURNAL__ = { PIECES, counts, openDetail, closeDetail, showSegment };
 })();

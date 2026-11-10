@@ -59,7 +59,7 @@
     aria-labelledby="detail-title"
     aria-hidden="true"
   >
-    <div class="detail__scroll">
+    <div class="detail__scroll" id="detail-scroll">
       <div class="detail__media" id="detail-media">
         <div class="detail__media-frame" id="detail-media-frame"></div>
         <button type="button" class="detail__close" id="detail-close" aria-label="关闭详情">
@@ -79,9 +79,16 @@
           <div class="detail__row" id="detail-apply-row" hidden><div class="detail__label">适用</div><div class="detail__value" id="detail-apply"></div></div>
         </div>
         <p class="detail__note" id="detail-note"></p>
-        <section class="detail__doc" id="detail-essay" hidden aria-label="赏析"></section>
-        <section class="detail__prompts" id="detail-prompts" hidden aria-label="可复刻提示词"></section>
-        <section class="detail__doc" id="detail-craft" hidden aria-label="传统制作解析"></section>
+        <div class="detail__segments">
+          <div class="detail__segments-bar" id="detail-segments" role="tablist" aria-label="详情分段">
+            <button type="button" class="detail__segment" role="tab" id="seg-essay" data-segment="essay" aria-controls="detail-essay" aria-selected="true">赏析</button>
+            <button type="button" class="detail__segment" role="tab" id="seg-prompts" data-segment="prompts" aria-controls="detail-prompts" aria-selected="false" tabindex="-1">AI复刻提示词</button>
+            <button type="button" class="detail__segment" role="tab" id="seg-craft" data-segment="craft" aria-controls="detail-craft" aria-selected="false" tabindex="-1">传统制作解析</button>
+          </div>
+        </div>
+        <section class="detail__doc" id="detail-essay" role="tabpanel" aria-labelledby="seg-essay"></section>
+        <section class="detail__prompts" id="detail-prompts" role="tabpanel" aria-labelledby="seg-prompts" hidden></section>
+        <section class="detail__doc" id="detail-craft" role="tabpanel" aria-labelledby="seg-craft" hidden></section>
       </div>
     </div>
     <div class="detail__actions" id="detail-actions"></div>
