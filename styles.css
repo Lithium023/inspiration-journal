@@ -920,6 +920,15 @@ a:hover { color: var(--accent-hover); }
   gap: 12px;
   margin: 4px 0 8px;
 }
+.proof-shots__head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.proof-shots__head .btn {
+  flex: 0 0 auto;
+}
 .proof-shots__title {
   margin: 0;
   font-family: var(--font-display);

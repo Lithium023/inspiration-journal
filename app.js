@@ -180,6 +180,7 @@
       essay: BATCH.viv.essay,
       craft: BATCH.viv.craft,
       prompts: BATCH.viv.prompts,
+      proofZip: "images/proof/viv/viv-proof-shots.zip",
       proofNote: [
         "活站：https://vivmgmt.com/（2026-11-07 完整滚动；2026-11-10 复核首页仍是同一活站）",
         "已知缺口：Production / About 整页静帧不足；源码中有全视口 #fac43a 黄场 masthead，该态未取帧，不要当成已观察画面。名册分类底色未逐项量取精确色号。部分名册截图停在滚动中段。",
@@ -957,10 +958,23 @@
     if (!shots.length) return;
     const section = document.createElement("section");
     section.className = "proof-shots";
+    const head = document.createElement("div");
+    head.className = "proof-shots__head";
     const title = document.createElement("h3");
     title.className = "proof-shots__title";
     title.textContent = "原站校对截图";
-    section.appendChild(title);
+    head.appendChild(title);
+    const zip = typeof piece.proofZip === "string" ? piece.proofZip.trim() : "";
+    if (zip) {
+      const download = document.createElement("a");
+      download.className = "btn btn--quiet btn--tiny";
+      download.href = zip;
+      const filename = zip.split("/").filter(Boolean).pop() || "viv-proof-shots.zip";
+      download.setAttribute("download", filename);
+      download.textContent = "下载全部截图";
+      head.appendChild(download);
+    }
+    section.appendChild(head);
     const notes = Array.isArray(piece.proofNote) ? piece.proofNote.filter(Boolean) : [];
     if (notes.length) {
       const note = document.createElement("div");
