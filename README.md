@@ -1,6 +1,6 @@
 # inspiration-journal
 
-Static cream-paper journal. Vol. 01 keeps earlier sets and adds the 2026-11-10 batch (30 works).
+Static cream-paper journal. Vol. 01 keeps earlier sets and adds the 2026-11-11 batch (33 works).
 
 The site files are at the repository root: `index.html`, `styles.css`, `app.js`, and `images/`.
 

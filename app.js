@@ -2,9 +2,328 @@
   const BATCH = window.JOURNAL_1107;
   const BATCH9 = window.JOURNAL_1109;
   const BATCH10 = window.JOURNAL_1110;
+  const BATCH11 = window.JOURNAL_1111;
   if (!BATCH) throw new Error("Missing 2026-11-07 journal batch");
   if (!BATCH9) throw new Error("Missing 2026-11-09 journal batch");
   if (!BATCH10) throw new Error("Missing 2026-11-10 journal batch");
+  if (!BATCH11) throw new Error("Missing 2026-11-11 journal batch");
+
+  const TODAY11 = [
+    {
+      id: "crl",
+      title: "Creative Reference Library",
+      creator: "Bimo Tri · Josh Bendall",
+      cat: "digital",
+      catLabel: "数字界面",
+      tag: "策划型参考馆 · 变形字标与 Wheel / List",
+      source: "Awwwards · Site of the Day · 2026-11-10",
+      note: "首屏浅灰底上，一行 CRL® /V.01 /(2026) 压在会变形、挖孔的黑色画布字标上；「Enter Library →」是跟随指针的小白药丸，指针离开构图时首屏可以只剩字和块。进馆才是斜放拍立得的 Wheel 与 1–20 三列 List。",
+      href: "https://www.awwwards.com/sites/creative-reference-library",
+      live: "https://crl-2026.webflow.io/",
+      region: "国际",
+      applyType: "网页/代码复刻",
+      promptsLabel: "AI复刻提示词",
+      essay: BATCH11.crl.essay,
+      craft: BATCH11.crl.craft,
+      prompts: BATCH11.crl.prompts,
+      proofZip: "images/proof/crl/crl-proof-shots.zip",
+      proofNote: [
+        "活站：https://crl-2026.webflow.io/（另须打开 /library、/about）。13 张，全部 1920×1072。",
+        "已知缺口：首页滚动只变形几何，没有满页页脚或字母游乐场，故没有 04。/library 没有可见页脚或字母游乐场，故没有 11。加载还有空白灰底与转入英雄的中间拍，未能留下中段静帧，不要编成已观察的开场序列。",
+        "不要打开已 404 的 https://crl.webflow.io/ ，也不要把只托管 JS 的 https://crl-2k26.vercel.app/ 当成营销原站。",
+      ],
+      proofShots: [
+        {
+          src: "images/proof/crl/01-loader.jpg",
+          caption: "浅灰底正中黑色镂空 CRL 词标（加载条）",
+          alt: "Creative Reference Library 原站校对：浅灰底正中黑色镂空 CRL 词标（加载条）",
+        },
+        {
+          src: "images/proof/crl/02-homepage-hero.jpg",
+          caption: "首页第一视口静止：浅灰底、巨大黑色字母式色块、CRL® / /V.01 / (2026)，无跟随胶囊",
+          alt: "Creative Reference Library 原站校对：首页第一视口静止：浅灰底、巨大黑色字母式色块、CRL® / /V.01 / (2026)，无跟随胶囊",
+        },
+        {
+          src: "images/proof/crl/03-homepage-scroll-morph.jpg",
+          caption: "滚动只驱动画布：黑色块变形并挖出大圆孔，字与导航不动；首页没有下一编辑章节",
+          alt: "Creative Reference Library 原站校对：滚动只驱动画布：黑色块变形并挖出大圆孔，字与导航不动；首页没有下一编辑章节",
+        },
+        {
+          src: "images/proof/crl/05-enter-library-hover.jpg",
+          caption: "指针在首屏上时出现跟随白底胶囊 “Enter Library →”",
+          alt: "Creative Reference Library 原站校对：指针在首屏上时出现跟随白底胶囊 “Enter Library →”",
+        },
+        {
+          src: "images/proof/crl/06-cursor-or-chrome.jpg",
+          caption: "跟随胶囊 + 另一变形态的黑色块",
+          alt: "Creative Reference Library 原站校对：跟随胶囊 + 另一变形态的黑色块",
+        },
+        {
+          src: "images/proof/crl/07-library-wheel.jpg",
+          caption: "/library Wheel：黑底、斜放拍立得轮盘、条目 1",
+          alt: "Creative Reference Library 原站校对：/library Wheel：黑底、斜放拍立得轮盘、条目 1",
+        },
+        {
+          src: "images/proof/crl/08-library-wheel-interact.jpg",
+          caption: "拖动轮盘后的条目 4",
+          alt: "Creative Reference Library 原站校对：拖动轮盘后的条目 4",
+        },
+        {
+          src: "images/proof/crl/09-library-list.jpg",
+          caption: "List：1–20 三列索引 + 右侧直立肖像",
+          alt: "Creative Reference Library 原站校对：List：1–20 三列索引 + 右侧直立肖像",
+        },
+        {
+          src: "images/proof/crl/10-library-list-to-wheel.jpg",
+          caption: "List 切回 Wheel 的中段：标题叠字、拍立得在右下扇开",
+          alt: "Creative Reference Library 原站校对：List 切回 Wheel 的中段：标题叠字、拍立得在右下扇开",
+        },
+        {
+          src: "images/proof/crl/12-about.jpg",
+          caption: "/about 第一视口：浅底巨大灰色字母、宣言标题、目录表",
+          alt: "Creative Reference Library 原站校对：/about 第一视口：浅底巨大灰色字母、宣言标题、目录表",
+        },
+        {
+          src: "images/proof/crl/13-about-scroll.jpg",
+          caption: "中段：Creatives (20) + 黑框肖像横排，英雄标题仍可叠在顶部",
+          alt: "Creative Reference Library 原站校对：中段：Creatives (20) + 黑框肖像横排，英雄标题仍可叠在顶部",
+        },
+        {
+          src: "images/proof/crl/14-about-footer.jpg",
+          caption: "页脚 DES/DEV credits + 黑带镂空字母",
+          alt: "Creative Reference Library 原站校对：页脚 DES/DEV credits + 黑带镂空字母",
+        },
+        {
+          src: "images/proof/crl/15-about-letter-playground.jpg",
+          caption: "拖动页脚镂空字母后堆叠",
+          alt: "Creative Reference Library 原站校对：拖动页脚镂空字母后堆叠",
+        },
+      ],
+    },
+    {
+      id: "fdexp",
+      title: "FD.EXP",
+      creator: "Fiddle.Digital（Dmytro Troshchylo · Olha Skrypka · Vlad Penev）",
+      cat: "digital",
+      catLabel: "数字界面",
+      tag: "实验作品集 · 弯曲转盘与变形页脚",
+      source: "CSS Design Awards · Website of the Day · 2026-11-10",
+      note: "淡紫、薄荷与粉的渐变场上，实验被排成弯曲的 3D 转盘，而不是整齐封面墙；下方是旋转的磨砂立方，面上有 KŌBŌ。页脚 EXP…HUB 会不断变形。主来源是 CSS Design Awards Website of the Day（评委总分 8.31），Awwwards 只是 Nominee，不要写成 Site of the Day。",
+      href: "https://www.cssdesignawards.com/sites/fd-exp/50351/",
+      live: "https://exp.fiddle.digital/",
+      region: "国际",
+      applyType: "网页/代码复刻",
+      promptsLabel: "AI复刻提示词",
+      essay: BATCH11.fdexp.essay,
+      craft: BATCH11.fdexp.craft,
+      prompts: BATCH11.fdexp.prompts,
+      proofZip: "images/proof/fdexp/fdexp-proof-shots.zip",
+      proofNote: [
+        "活站：https://exp.fiddle.digital/（文档标题 “Fiddle.Digital — Experiments”）。14 张，全部 1920×1072。含 10×10 开场网格（01 / 01b）。",
+        "已知缺口：未拍非 BLACK 色标主题下的首页；未打开 KŌBŌ 模态，不要编造其内容；未打开 /exp/7。无 cookie 弹层静帧。LIST / GRID 仅悬停、尚未切到 GRID 的黑胶囊态未单独存文件。画面标签以静帧为准（右下绿卡竖排短标题为 SQRLCS，不要误读成 SHRL 08）。09 右侧系统箭头残影不是自定义光标。",
+        "不要把工作室首页 https://fiddle.digital/ 或 https://www.fiddle.digital/ 当成实验馆。",
+      ],
+      proofShots: [
+        {
+          src: "images/proof/fdexp/01-loader.jpg",
+          caption: "深色全屏开场：10×10 深色格，上下呈条码状的少量白格，无可读文字",
+          alt: "FD.EXP 原站校对：深色全屏开场：10×10 深色格，上下呈条码状的少量白格，无可读文字",
+        },
+        {
+          src: "images/proof/fdexp/01b-loader-exit.jpg",
+          caption: "开场退出：首页铬层、半透明加号、细滑杆已在，卡片几乎未入场（右侧只露一角）；页脚词循环正处于乱码中段（可见 EXPOTIMEUTS）",
+          alt: "FD.EXP 原站校对：开场退出：首页铬层、半透明加号、细滑杆已在，卡片几乎未入场（右侧只露一角）；页脚词循环正处于乱码中段（可见 EXPOTIMEUTS）",
+        },
+        {
+          src: "images/proof/fdexp/02-homepage-hero.jpg",
+          caption: "首页第一视口静止：lilac / mint / pink 柔渐变；弯曲 3D 卡片转盘；半透明方块 3D 加号；细刻度滑杆。顶栏 FD.EXP、LIST / GRID、エクス词标、ABOUT、LET'S TALK。页脚已在同一剧场视口",
+          alt: "FD.EXP 原站校对：首页第一视口静止：lilac / mint / pink 柔渐变；弯曲 3D 卡片转盘；半透明方块 3D 加号；细刻度滑杆。顶栏 FD.EXP、LIST / GRID、エクス词标、ABOUT、LET'S TALK。页脚已在同一剧场视口",
+        },
+        {
+          src: "images/proof/fdexp/03-homepage-carousel-turn.jpg",
+          caption: "转盘转动后：3D FLLS / GRL FLX / PXD VID 进入主视野，弧度变平，滑杆刻度右移",
+          alt: "FD.EXP 原站校对：转盘转动后：3D FLLS / GRL FLX / PXD VID 进入主视野，弧度变平，滑杆刻度右移",
+        },
+        {
+          src: "images/proof/fdexp/04-homepage-plus-or-hover.jpg",
+          caption: "悬停主卡（3D FLLS）：黑色加号形覆盖层；巨大跟随标签 “3D FLLS”；加号可呈手型指针",
+          alt: "FD.EXP 原站校对：悬停主卡（3D FLLS）：黑色加号形覆盖层；巨大跟随标签 “3D FLLS”；加号可呈手型指针",
+        },
+        {
+          src: "images/proof/fdexp/05-homepage-grid.jpg",
+          caption: "LIST / GRID 切到 GRID：整颗控件呈黑底胶囊；卡片打散、重叠、部分旋转，短标题沿边缘排；加号仍在中央。右下绿卡竖排短标题实为 SQRLCS（带色散，不要误读成 SHRL 08）",
+          alt: "FD.EXP 原站校对：LIST / GRID 切到 GRID：整颗控件呈黑底胶囊；卡片打散、重叠、部分旋转，短标题沿边缘排；加号仍在中央。右下绿卡竖排短标题实为 SQRLCS（带色散，不要误读成 SHRL 08）",
+        },
+        {
+          src: "images/proof/fdexp/06-homepage-footer.jpg",
+          caption: "与 02 字节相同：首页没有第二屏页脚，SFX、EX* 词循环 + HUB、↓ KŌBŌ、©2026、色标 BLACK/RED/GREEN/YELLOW/BLUE（箭头标在 BLACK）都在第一视口",
+          alt: "FD.EXP 原站校对：与 02 字节相同：首页没有第二屏页脚，SFX、EX* 词循环 + HUB、↓ KŌBŌ、©2026、色标 BLACK/RED/GREEN/YELLOW/BLUE（箭头标在 BLACK）都在第一视口",
+        },
+        {
+          src: "images/proof/fdexp/07-cursor-or-chrome.jpg",
+          caption: "与 04 字节相同：用于指出跟随大标签与系统指针并存（无自定义指针替换）",
+          alt: "FD.EXP 原站校对：与 04 字节相同：用于指出跟随大标签与系统指针并存（无自定义指针替换）",
+        },
+        {
+          src: "images/proof/fdexp/08-exp-8-hero.jpg",
+          caption: "/exp/8 第一视口：圆角深色舞台，左右露出邻卡；全局顶栏/页脚被黑白条码格盖住，顶中仍见 エクス。舞台内 CLS、MTN CPTR、拼贴人像、坐标与虚线、对切大字 Mtn / Cptr、底沿 SCROLL、ABT",
+          alt: "FD.EXP 原站校对：/exp/8 第一视口：圆角深色舞台，左右露出邻卡；全局顶栏/页脚被黑白条码格盖住，顶中仍见 エクス。舞台内 CLS、MTN CPTR、拼贴人像、坐标与虚线、对切大字 Mtn / Cptr、底沿 SCROLL、ABT",
+        },
+        {
+          src: "images/proof/fdexp/09-exp-8-scroll.jpg",
+          caption: "/exp/8 中段滚动：Mtn 与 Cptr 进一步分开，坐标/虚线移动。右侧有系统箭头残影，不是站点自定义光标",
+          alt: "FD.EXP 原站校对：/exp/8 中段滚动：Mtn 与 Cptr 进一步分开，坐标/虚线移动。右侧有系统箭头残影，不是站点自定义光标",
+        },
+        {
+          src: "images/proof/fdexp/10-about.jpg",
+          caption: "/about 第一视口：同一圆角舞台 + 条码格铬层；肖像；底部大切字 THIS IS / WHERE… 被舞台下沿裁切",
+          alt: "FD.EXP 原站校对：/about 第一视口：同一圆角舞台 + 条码格铬层；肖像；底部大切字 THIS IS / WHERE… 被舞台下沿裁切",
+        },
+        {
+          src: "images/proof/fdexp/11-about-scroll.jpg",
+          caption: "/about 中下段：顶部巨大 TATION.；肖像呈粗像素/马赛克；致谢 FIDDLE.DIGITAL / EXP 与人名职责",
+          alt: "FD.EXP 原站校对：/about 中下段：顶部巨大 TATION.；肖像呈粗像素/马赛克；致谢 FIDDLE.DIGITAL / EXP 与人名职责",
+        },
+        {
+          src: "images/proof/fdexp/12-about-transition.jpg",
+          caption: "进入 About 的中段开场：深色格栅、中央倾斜线框加号、下方大字 ABOUT（由 15-about-transition.png 改名）",
+          alt: "FD.EXP 原站校对：进入 About 的中段开场：深色格栅、中央倾斜线框加号、下方大字 ABOUT（由 15-about-transition.png 改名）",
+        },
+        {
+          src: "images/proof/fdexp/13-exp-9-hero.jpg",
+          caption: "/exp/9 HP VLCT：圆角舞台、俯视夜公路、车、大红「熱狂の速度」、上下各一行 Hold Shift to launch（由 15-exp-9-hero.png 改名）",
+          alt: "FD.EXP 原站校对：/exp/9 HP VLCT：圆角舞台、俯视夜公路、车、大红「熱狂の速度」、上下各一行 Hold Shift to launch（由 15-exp-9-hero.png 改名）",
+        },
+      ],
+    },
+    {
+      id: "dwell",
+      title: "Dwell | A new way home",
+      creator: "Uncommon Design Group（Oli · Richie Meldrum · Surya Aditya · matthew-misuraca）",
+      cat: "digital",
+      catLabel: "数字界面",
+      tag: "住房产品叙事 · 风景窗框与对照图",
+      source: "Awwwards · Nominee · 2026-11-09",
+      note: "落定首屏是金色晨雾里的风景窗框，浅蓝小写 a new / way / home 围着 OUR STORY 影片；顶栏右上除 BUILD YOUR HOME、HOW IT WORKS 外还有一颗带斜箭头的圆形按钮；底部正中是单独的 REGISTER。滚到夜绿色文案段后，底部才收成 ASK NAT | REGISTER。它是 Awwwards Nominee，不要写成 SOTD，也不要编总分。",
+      href: "https://www.awwwards.com/sites/dwell-a-new-way-home",
+      live: "https://dwell.au/",
+      region: "国际",
+      applyType: "网页/代码复刻",
+      promptsLabel: "AI复刻提示词",
+      essay: BATCH11.dwell.essay,
+      craft: BATCH11.dwell.craft,
+      prompts: BATCH11.dwell.prompts,
+      proofZip: "images/proof/dwell/dwell-proof-shots.zip",
+      proofNote: [
+        "活站：https://dwell.au/（首页标题 “Dwell | A new way home”）。20 张，全部 1280×800。同批 CRL / FD.EXP 为 1920×1072，不要混用。",
+        "对比图上的年份与读数只作排版记录，须保留页上免责声明，不要写成财务建议。未单独拍 7 年芯片（04b 是 10 年）。",
+        "已知缺口：未打开 COOKIE PREFERENCES；未打开 builder 的 EXTERIOR，也未按 CONTINUE / ENQUIRE / VIEW BREAKDOWN；FAQ 英雄区芯片触发的视频未成功起播，不要把报错写成签名交互；未打开隐私/条款正文页。未提交任何表单。",
+        "不要打开证书不匹配的 https://www.dwell.au/ ，也不要把 https://uncommondesign.group/ 当成产品站。",
+      ],
+      proofShots: [
+        {
+          src: "images/proof/dwell/01-loader.jpg",
+          caption: "奶油底 + 深色圆角内框；左上巨大橄榄色 100%；右下水彩房与树。更早的 0% 几乎是空白奶油底，本帧是能稳住的最早可辨加载态",
+          alt: "Dwell | A new way home 原站校对：奶油底 + 深色圆角内框；左上巨大橄榄色 100%；右下水彩房与树。更早的 0% 几乎是空白奶油底，本帧是能稳住的最早可辨加载态",
+        },
+        {
+          src: "images/proof/dwell/02-homepage-hero.jpg",
+          caption: "首页第一视口静止：风景满铺、dwell 词标、BUILD YOUR HOME / HOW IT WORKS / 圆形菜单；三分字 a new / way / home 围着圆角 OUR STORY 插段；REGISTER 与 SCROLL",
+          alt: "Dwell | A new way home 原站校对：首页第一视口静止：风景满铺、dwell 词标、BUILD YOUR HOME / HOW IT WORKS / 圆形菜单；三分字 a new / way / home 围着圆角 OUR STORY 插段；REGISTER 与 SCROLL",
+        },
+        {
+          src: "images/proof/dwell/03-homepage-scroll.jpg",
+          caption: "中段深色 typographic 节：居中 “When it comes to how we live, we've only ever had two choices.”；右侧淡圆线纹；底栏 ASK NAT | REGISTER 组合胶囊",
+          alt: "Dwell | A new way home 原站校对：中段深色 typographic 节：居中 “When it comes to how we live, we've only ever had two choices.”；右侧淡圆线纹；底栏 ASK NAT | REGISTER 组合胶囊",
+        },
+        {
+          src: "images/proof/dwell/04-homepage-compare.jpg",
+          caption: "“compared with traditional buying” + 磨砂财富曲线图，年芯片 5 选中，读数 $336 k / $233 k，CROYDON, VIC 与房型价",
+          alt: "Dwell | A new way home 原站校对：“compared with traditional buying” + 磨砂财富曲线图，年芯片 5 选中，读数 $336 k / $233 k，CROYDON, VIC 与房型价",
+        },
+        {
+          src: "images/proof/dwell/04b-homepage-compare-interact.jpg",
+          caption: "同一节点击 10 年芯片后，读数变为 $370 k / $270 k（未单独拍 7 年）",
+          alt: "Dwell | A new way home 原站校对：同一节点击 10 年芯片后，读数变为 $370 k / $270 k（未单独拍 7 年）",
+        },
+        {
+          src: "images/proof/dwell/05-homepage-footer.jpg",
+          caption: "独立页脚：外缘奶油底，内一块大圆角浅蓝板；巨大 dwell 词标；导航与社交列；MEL AUS 本地时间；板下法律行与 SITE BY UDG",
+          alt: "Dwell | A new way home 原站校对：独立页脚：外缘奶油底，内一块大圆角浅蓝板；巨大 dwell 词标；导航与社交列；MEL AUS 本地时间；板下法律行与 SITE BY UDG",
+        },
+        {
+          src: "images/proof/dwell/06-cursor-or-chrome.jpg",
+          caption: "首屏 HOW IT WORKS 悬停：该链接出现错位/重影字。无自定义光标（页面静帧不含系统指针）",
+          alt: "Dwell | A new way home 原站校对：首屏 HOW IT WORKS 悬停：该链接出现错位/重影字。无自定义光标（页面静帧不含系统指针）",
+        },
+        {
+          src: "images/proof/dwell/07-register-modal.jpg",
+          caption: "Register 模态：竖向圆角面板 “register your interest”，LIVING / TRADES / ENQUIRY 与空白表单，未填写未提交",
+          alt: "Dwell | A new way home 原站校对：Register 模态：竖向圆角面板 “register your interest”，LIVING / TRADES / ENQUIRY 与空白表单，未填写未提交",
+        },
+        {
+          src: "images/proof/dwell/08-about.jpg",
+          caption: "/about 第一视口（不是首页 “meet Dwell” 预告）：窗边人像满铺，三分字 a third / housing / option，OUR STORY、SCROLL",
+          alt: "Dwell | A new way home 原站校对：/about 第一视口（不是首页 “meet Dwell” 预告）：窗边人像满铺，三分字 a third / housing / option，OUR STORY、SCROLL",
+        },
+        {
+          src: "images/proof/dwell/09-about-scroll.jpg",
+          caption: "/about 中段 BUILT DIFFERENTLY 与卡片 01 Greater access、02 Build without debt，03/04 在视口底部探出",
+          alt: "Dwell | A new way home 原站校对：/about 中段 BUILT DIFFERENTLY 与卡片 01 Greater access、02 Build without debt，03/04 在视口底部探出",
+        },
+        {
+          src: "images/proof/dwell/10-how-it-works.jpg",
+          caption: "/how-it-works 第一视口：微笑人像满铺，三分字 how / Dwell / works，HOW IT WORKS 播放控件、SCROLL",
+          alt: "Dwell | A new way home 原站校对：/how-it-works 第一视口：微笑人像满铺，三分字 how / Dwell / works，HOW IT WORKS 播放控件、SCROLL",
+        },
+        {
+          src: "images/proof/dwell/11-how-it-works-scroll.jpg",
+          caption: "后段 STEP BY STEP：choose your Dwell home、房屋照片、右侧 1–4 步进（1 选中）",
+          alt: "Dwell | A new way home 原站校对：后段 STEP BY STEP：choose your Dwell home、房屋照片、右侧 1–4 步进（1 选中）",
+        },
+        {
+          src: "images/proof/dwell/11b-how-it-works-video.jpg",
+          caption: "/how-it-works/video 满屏播放器：同一微笑人像、00:00、播放/音量、右上关闭 X",
+          alt: "Dwell | A new way home 原站校对：/how-it-works/video 满屏播放器：同一微笑人像、00:00、播放/音量、右上关闭 X",
+        },
+        {
+          src: "images/proof/dwell/12-faqs.jpg",
+          caption: "/faqs 第一视口：女子出镜，“your questions answered”，底部问题芯片与左右箭头",
+          alt: "Dwell | A new way home 原站校对：/faqs 第一视口：女子出镜，“your questions answered”，底部问题芯片与左右箭头",
+        },
+        {
+          src: "images/proof/dwell/12b-faqs-open.jpg",
+          caption: "/faqs 中段 POPULAR 手风琴：WHAT MAKES DWELL DIFFERENT? 展开，含回答与 WATCH NOW 00:35 缩略图",
+          alt: "Dwell | A new way home 原站校对：/faqs 中段 POPULAR 手风琴：WHAT MAKES DWELL DIFFERENT? 展开，含回答与 WATCH NOW 00:35 缩略图",
+        },
+        {
+          src: "images/proof/dwell/13-home-builder.jpg",
+          caption: "/home-builder 浅色工具页上的 Confirm location 对话框（STATE / POSTCODE 空，未 Continue）",
+          alt: "Dwell | A new way home 原站校对：/home-builder 浅色工具页上的 Confirm location 对话框（STATE / POSTCODE 空，未 Continue）",
+        },
+        {
+          src: "images/proof/dwell/13b-home-builder-interact.jpg",
+          caption: "关闭选址框后：The Retreat 选中、水彩轴测平面、The Homestead、娱乐芯片、10 年财富对比",
+          alt: "Dwell | A new way home 原站校对：关闭选址框后：The Retreat 选中、水彩轴测平面、The Homestead、娱乐芯片、10 年财富对比",
+        },
+        {
+          src: "images/proof/dwell/14-trades.jpg",
+          caption: "/trades 第一视口：独轮车风景，三分字 join / Dwell / trades，SCROLL",
+          alt: "Dwell | A new way home 原站校对：/trades 第一视口：独轮车风景，三分字 join / Dwell / trades，SCROLL",
+        },
+        {
+          src: "images/proof/dwell/15-ask-nat-modal.jpg",
+          caption: "从 /trades 打开的 Ask Nat 模态：your questions answered、问题列表、MORE FAQS，未输入",
+          alt: "Dwell | A new way home 原站校对：从 /trades 打开的 Ask Nat 模态：your questions answered、问题列表、MORE FAQS，未输入",
+        },
+        {
+          src: "images/proof/dwell/16-about-video.jpg",
+          caption: "/about/video 满屏舞台：窗边人、00:00 播放铬层、关闭 X。标题 “Our story | Dwell”",
+          alt: "Dwell | A new way home 原站校对：/about/video 满屏舞台：窗边人、00:00 播放铬层、关闭 X。标题 “Our story | Dwell”",
+        },
+      ],
+    },
+  ];
 
   const TODAY10 = [
     {
@@ -296,7 +615,7 @@
     },
   ];
 
-  const PIECES = TODAY10.concat(TODAY9).concat(TODAY).concat([
+  const PIECES = TODAY11.concat(TODAY10).concat(TODAY9).concat(TODAY).concat([
     {
       id: "agrumea",
       title: "Agrumea Farm",
